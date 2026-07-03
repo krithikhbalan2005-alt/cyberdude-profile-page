@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -94,7 +94,7 @@
 </head>
 <body class="bg-[#0b0f19] text-slate-100 min-h-screen px-4 sm:px-6 lg:px-8 py-4 md:py-6 overflow-x-hidden">
 
-    <div id="dashboardContent" class="w-full min-h-screen max-w-none p-0 sm:p-0 md:p-0 flex flex-col relative">
+    <div id="dashboardContent" class="w-full flex flex-col relative">
 
         <!-- Header -->
         <div class="border-b border-slate-700/50 pb-5 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -133,7 +133,7 @@
                 <div class="p-6 flex flex-col items-center space-y-5">
                     <!-- Avatar -->
                     <div class="relative">
-                        <div class="w-22 h-22 rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center text-white text-3xl font-extrabold shadow-lg" style="width:88px;height:88px;">
+                        <div class="rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center text-white text-3xl font-extrabold shadow-lg" style="width:88px;height:88px;">
                             KB
                         </div>
                         <span class="absolute bottom-0 right-0 bg-emerald-500 text-white p-1.5 rounded-full border-[3px] border-[#0f172a] flex items-center justify-center" title="Verified">
@@ -654,7 +654,7 @@
     <!-- html2pdf.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
-        // Six-month breakdown toggle
+        // Breakdown toggle
         document.getElementById('breakdownToggle').addEventListener('click', function () {
             var content = document.getElementById('breakdownContent');
             var label = document.getElementById('breakdownLabel');
@@ -671,16 +671,15 @@
             }
         });
 
-        // PDF download
+        // PDF export — opens in new tab
         document.getElementById('downloadPdfBtn').addEventListener('click', function () {
             var element = document.getElementById('dashboardContent');
             var button = this;
             var pdfFilename = 'CyberDude_Internship_Profile_S_Krithikh_Balan.pdf';
 
-            // Pre-open window DURING user gesture to avoid popup blocker
             var pdfWindow = window.open('', '_blank');
             if (pdfWindow) {
-                pdfWindow.document.write('<html><head><title>' + pdfFilename + '</title></head><body style="margin:0;display:flex;justify-content:center;align-items:center;height:100vh;background:#0b0f19;color:#e2e8f0;font-family:sans-serif;"><p style="font-size:18px;">⏳ Generating PDF, please wait...</p></body></html>');
+                pdfWindow.document.write('<html><head><title>' + pdfFilename + '</title></head><body style="margin:0;display:flex;justify-content:center;align-items:center;height:100vh;background:#0b0f19;color:#e2e8f0;font-family:sans-serif;"><p style="font-size:18px;">Generating PDF, please wait...</p></body></html>');
             }
 
             button.style.display = 'none';
@@ -710,7 +709,6 @@
                         if (pdfWindow && !pdfWindow.closed) {
                             pdfWindow.location.href = url;
                         } else {
-                            // Fallback if popup was blocked
                             window.open(url, '_blank');
                         }
                         element.classList.remove('pdf-mode');
