@@ -32,55 +32,6 @@
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
 
-        /* PDF Export Mode */
-        .pdf-mode {
-            width: 800px !important;
-            max-width: 800px !important;
-            margin: 0 auto !important;
-            background: #0b0f19 !important;
-            padding: 32px !important;
-            box-shadow: none !important;
-            overflow: visible !important;
-        }
-
-        .pdf-mode * {
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-
-        .pdf-mode .bg-slate-950\/40,
-        .pdf-mode .bg-slate-900\/40,
-        .pdf-mode .bg-slate-900\/60 {
-            background-color: #111827 !important;
-            border-color: #1e293b !important;
-        }
-
-        .pdf-mode > div,
-        .pdf-mode .space-y-5 > div,
-        .pdf-mode .space-y-6 > div,
-        .pdf-mode .grid > div {
-            page-break-inside: avoid !important;
-            break-inside: avoid !important;
-        }
-
-        .pdf-mode .dashboard-grid {
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 24px !important;
-        }
-
-        .pdf-mode .sidebar-col,
-        .pdf-mode .main-col {
-            width: 100% !important;
-            max-width: 100% !important;
-        }
-
-        .pdf-mode .projects-grid {
-            display: grid !important;
-            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-            gap: 16px !important;
-        }
-
         /* Breakdown toggle */
         .breakdown-content {
             max-height: 0;
@@ -89,6 +40,42 @@
         }
         .breakdown-content.open {
             max-height: 2000px;
+        }
+
+        /* Week wise tasks toggle */
+        .weekwise-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .weekwise-content.open {
+            max-height: 5000px;
+        }
+
+        /* Tech tag click */
+        .tech-tag {
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+        }
+        .tech-tag:hover {
+            border-color: #6366f1;
+            color: #c7d2fe;
+        }
+        .tech-tag.active {
+            border-color: #6366f1;
+            color: #c7d2fe;
+            background-color: rgba(99,102,241,0.15);
+        }
+
+        /* Hidden PDF report */
+        #pdfReport {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            width: 794px;
+            background: #ffffff;
+            color: #1a1a1a;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
     </style>
 </head>
@@ -106,7 +93,7 @@
                 </button>
                 <div class="flex flex-col">
                     <h1 class="text-base sm:text-lg font-bold text-white tracking-tight leading-tight">
-                        CyberDude NetWorks Pvt.Ltd.
+                        CyberDude Networks Pvt. Ltd.
                     </h1>
                     <p class="text-xs text-indigo-400/80 font-semibold tracking-wider uppercase">
                         Internship Profile Dashboard
@@ -151,7 +138,7 @@
                     <div class="w-full space-y-3 pt-4 border-t border-slate-800/50 text-sm">
                         <div class="flex justify-between items-center">
                             <span class="text-slate-500 text-xs font-medium uppercase">Company</span>
-                            <span class="font-semibold text-orange-400 text-xs text-right">CyberDude NetWorks Pvt.Ltd.</span>
+                            <span class="font-semibold text-orange-400 text-xs text-right">CyberDude Networks Pvt. Ltd.</span>
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-slate-500 text-xs font-medium uppercase">Duration</span>
@@ -192,6 +179,15 @@
                                 <svg viewBox="0 0 24 24" class="w-4 h-4 text-white" fill="currentColor"><path d="M11.572 0c-.176.001-.349.007-.521.019C6.619.363 2.797 3.49.948 7.827c-.401.94-.695 1.936-.879 2.969-.057.323-.102.649-.134.978C-.07 12.36-.022 12.95.046 13.53c.477 4.122 3.058 7.686 6.72 9.44 1.05.504 2.17.856 3.337 1.033.386.058.778.093 1.173.103.188.005.377.003.564-.006 2.95-.144 5.65-1.634 7.413-3.96l-6.744-9.587-.01-.012L8.07 15.7a.325.325 0 0 1-.543-.249V8.297l4.482 6.522 4.633 6.58a10.388 10.388 0 0 1-2.556 1.418c-.936.363-1.937.576-2.976.615-.186.007-.373.008-.558.003a9.566 9.566 0 0 1-1.076-.095 9.853 9.853 0 0 1-5.556-3.098C2.078 18.256.943 15.837.943 13.162c0-.24.013-.478.04-.714.028-.244.067-.486.118-.724.347-1.638 1.141-3.12 2.275-4.312C4.92 5.738 6.932 4.676 9.155 4.39c.37-.048.745-.073 1.123-.07.375.003.748.033 1.116.09a9.89 9.89 0 0 1 4.721 2.264l-1.478 1.478A8.077 8.077 0 0 0 11.572 0z"/></svg>
                                 Next.js
                             </span>
+                        </div>
+                    </div>
+
+                    <!-- Type Speed -->
+                    <div class="w-full pt-4 border-t border-slate-800/50 space-y-2">
+                        <span class="block text-xs text-slate-500 font-semibold uppercase tracking-wider">Type Speed</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-slate-400">Best WPM</span>
+                            <span class="text-xs font-semibold text-slate-500">Not Available</span>
                         </div>
                     </div>
 
@@ -247,25 +243,64 @@
                     </div>
                 </div>
 
+                <!-- Key Strengths -->
+                <div class="bg-slate-950/40 border border-slate-800/70 rounded-xl p-6 flex flex-col shadow-lg space-y-3">
+                    <h2 class="text-[15px] font-bold text-white pb-2 border-b border-slate-800/50">Key Strengths</h2>
+                    <ul class="space-y-2 text-[13px] text-slate-300 leading-relaxed">
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0"></span>
+                            Strong Technical Skills
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0"></span>
+                            Quick Learner
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0"></span>
+                            Problem Solver
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0"></span>
+                            Team Player
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0"></span>
+                            Ownership &amp; Responsibility
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0"></span>
+                            Professional Communication
+                        </li>
+                    </ul>
+                </div>
+
                 <!-- Leadership Quality -->
                 <div class="bg-slate-950/40 border border-slate-800/70 rounded-xl p-6 flex flex-col shadow-lg space-y-3">
                     <h2 class="text-[15px] font-bold text-white pb-2 border-b border-slate-800/50">Leadership Quality</h2>
                     <ul class="space-y-2 text-[13px] text-slate-300 leading-relaxed">
                         <li class="flex items-start gap-2">
                             <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
-                            Guided team members during project work
+                            Took initiative in complex tasks
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
-                            Took initiative in completing assigned modules
+                            Helped in task planning &amp; estimation
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
-                            Supported frontend, backend, and integration tasks
+                            Mentored teammates effectively
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
-                            Helped in testing, debugging, and final verification
+                            Maintained high code quality
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            Showed excellent communication
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            Demonstrated ownership &amp; teamwork
                         </li>
                     </ul>
                 </div>
@@ -274,35 +309,8 @@
                 <div class="bg-slate-950/40 border border-slate-800/70 rounded-xl p-6 flex flex-col shadow-lg space-y-3">
                     <h2 class="text-[15px] font-bold text-white pb-2 border-b border-slate-800/50">Remarks</h2>
                     <p class="text-[13px] text-slate-300 leading-relaxed">
-                        Krithikh showed good involvement during the internship period. He actively contributed to assigned project tasks, maintained consistent work progress, and supported development activities with a positive learning attitude.
+                        Krithikh Balan has shown excellent dedication, consistency, and a strong learning attitude. He actively contributed to multiple projects, supported team members, and maintained excellent communication. His problem-solving ability, ownership, and reliability are highly appreciated.
                     </p>
-                </div>
-
-                <!-- Key Strengths -->
-                <div class="bg-slate-950/40 border border-slate-800/70 rounded-xl p-6 flex flex-col shadow-lg space-y-3">
-                    <h2 class="text-[15px] font-bold text-white pb-2 border-b border-slate-800/50">Key Strengths</h2>
-                    <ul class="space-y-2 text-[13px] text-slate-300 leading-relaxed">
-                        <li class="flex items-start gap-2">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0"></span>
-                            Quick learner
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0"></span>
-                            Team coordination
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0"></span>
-                            Problem-solving mindset
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0"></span>
-                            UI development focus
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0"></span>
-                            Project completion responsibility
-                        </li>
-                    </ul>
                 </div>
 
             </div>
@@ -415,6 +423,127 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Week Wise Tasks -->
+                    <div class="mt-1">
+                        <button id="weekwiseToggle" class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-indigo-400 transition duration-200 py-1" style="background:none;border:none;cursor:pointer;">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                            </svg>
+                            <span id="weekwiseLabel">Week Wise Tasks</span>
+                            <svg id="weekwiseChevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3 h-3 transition-transform duration-300">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </button>
+                        <div id="weekwiseContent" class="weekwise-content">
+                            <div class="mt-2 space-y-1">
+                                <a href="https://github.com/krithikhbalan2005-alt/AI_Code_Review_Assistant_for_Students" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">1</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Orientation and setup</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/AI_Code_Review_Assistant_for_Students" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">2</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">HTML + CSS basics</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/AI_Code_Review_Assistant_for_Students" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">3</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Responsive layout practice</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/AI_Code_Review_Assistant_for_Students" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">4</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">JavaScript fundamentals</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/k-kart" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">5</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">React component practice</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/k-kart" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">6</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Tailwind integration</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/k-kart" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">7</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">GitHub and deployment tasks</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/k-kart" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">8</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">UI refinement and testing</span>
+                                </a>
+                                <a href="http://complaintsite.free.nf/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">9</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">API structure understanding</span>
+                                </a>
+                                <a href="http://complaintsite.free.nf/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">10</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Backend setup with Node.js</span>
+                                </a>
+                                <a href="http://complaintsite.free.nf/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">11</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Authentication module practice</span>
+                                </a>
+                                <a href="http://complaintsite.free.nf/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">12</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Core module integration</span>
+                                </a>
+                                <a href="https://child-safety-tracking-system-m1v9.vercel.app" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">13</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Data fetching and state handling</span>
+                                </a>
+                                <a href="https://child-safety-tracking-system-m1v9.vercel.app" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">14</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Form handling and validation</span>
+                                </a>
+                                <a href="https://child-safety-tracking-system-m1v9.vercel.app" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">15</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Dashboard UI development</span>
+                                </a>
+                                <a href="https://child-safety-tracking-system-m1v9.vercel.app" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">16</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">User role and permission flow</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/request-management-module" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">17</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Project module development</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/request-management-module" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">18</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Testing and bug fixing</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/request-management-module" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">19</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">UI/UX improvements</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/request-management-module" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">20</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Performance optimization</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/request-management-module" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">21</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Deployment configuration</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/request-management-module" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">22</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Live deployment testing</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/request-management-module" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">23</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Documentation</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/request-management-module" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">24</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Final review and improvements</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/request-management-module" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">25</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">PDF export and report finalization</span>
+                                </a>
+                                <a href="https://github.com/krithikhbalan2005-alt/request-management-module" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-3 py-2 bg-slate-900/40 border border-slate-800/50 rounded-lg hover:border-indigo-500/30 hover:bg-slate-900/60 transition duration-200 group">
+                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-800/60 px-1.5 py-0.5 rounded border border-slate-700/40 font-mono flex-shrink-0 w-7 text-center">26</span>
+                                    <span class="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors">Project completion</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Featured Projects -->
@@ -429,7 +558,7 @@
                     <div class="projects-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
                         <!-- Project 1 -->
-                        <div class="bg-slate-900/40 border border-slate-800/80 hover:border-indigo-500/30 hover:bg-slate-900/60 rounded-xl p-5 flex flex-col justify-between space-y-4 transition duration-300 group shadow-inner h-full">
+                        <div class="project-card bg-slate-900/40 border border-slate-800/80 hover:border-indigo-500/30 hover:bg-slate-900/60 rounded-xl p-5 flex flex-col justify-between space-y-4 transition duration-300 group shadow-inner h-full">
                             <div class="space-y-3">
                                 <div class="flex items-center gap-3">
                                     <span class="text-[10px] font-bold text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded border border-indigo-500/20 font-mono flex-shrink-0">01</span>
@@ -449,11 +578,11 @@
                             </div>
                             <div class="space-y-3">
                                 <div class="flex flex-wrap gap-1.5 pt-1">
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">React.js</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">JavaScript</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">HTML5</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">CSS3</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">AI API Integration</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">React.js</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">JavaScript</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">HTML5</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">CSS3</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">AI API Integration</span>
                                 </div>
                                 <div class="flex gap-2 pt-1">
                                     <a href="https://ai-code-review-assistant-for-studen.vercel.app/" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 px-3 bg-indigo-600/20 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-600/30 text-xs font-semibold rounded-lg transition duration-200">Live Demo</a>
@@ -463,7 +592,7 @@
                         </div>
 
                         <!-- Project 2 -->
-                        <div class="bg-slate-900/40 border border-slate-800/80 hover:border-indigo-500/30 hover:bg-slate-900/60 rounded-xl p-5 flex flex-col justify-between space-y-4 transition duration-300 group shadow-inner h-full">
+                        <div class="project-card bg-slate-900/40 border border-slate-800/80 hover:border-indigo-500/30 hover:bg-slate-900/60 rounded-xl p-5 flex flex-col justify-between space-y-4 transition duration-300 group shadow-inner h-full">
                             <div class="space-y-3">
                                 <div class="flex items-center gap-3">
                                     <span class="text-[10px] font-bold text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded border border-indigo-500/20 font-mono flex-shrink-0">02</span>
@@ -484,11 +613,11 @@
                             </div>
                             <div class="space-y-3">
                                 <div class="flex flex-wrap gap-1.5 pt-1">
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">React.js</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Vite</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Tailwind CSS</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">React Router DOM</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Context API</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">React.js</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Vite</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Tailwind CSS</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">React Router DOM</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Context API</span>
                                 </div>
                                 <div class="flex gap-2 pt-1">
                                     <a href="https://k-kart-krithikh.vercel.app/" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 px-3 bg-indigo-600/20 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-600/30 text-xs font-semibold rounded-lg transition duration-200">Live Demo</a>
@@ -498,7 +627,7 @@
                         </div>
 
                         <!-- Project 3 -->
-                        <div class="bg-slate-900/40 border border-slate-800/80 hover:border-indigo-500/30 hover:bg-slate-900/60 rounded-xl p-5 flex flex-col justify-between space-y-4 transition duration-300 group shadow-inner h-full">
+                        <div class="project-card bg-slate-900/40 border border-slate-800/80 hover:border-indigo-500/30 hover:bg-slate-900/60 rounded-xl p-5 flex flex-col justify-between space-y-4 transition duration-300 group shadow-inner h-full">
                             <div class="space-y-3">
                                 <div class="flex items-center gap-3">
                                     <span class="text-[10px] font-bold text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded border border-indigo-500/20 font-mono flex-shrink-0">03</span>
@@ -520,10 +649,10 @@
                             </div>
                             <div class="space-y-3">
                                 <div class="flex flex-wrap gap-1.5 pt-1">
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Python</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">React.js</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">MySQL</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">AI/ML</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Python</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">React.js</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">MySQL</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">AI/ML</span>
                                 </div>
                                 <div class="flex gap-2 pt-1">
                                     <a href="http://complaintsite.free.nf/" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 px-3 bg-indigo-600/20 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-600/30 text-xs font-semibold rounded-lg transition duration-200">Live Demo</a>
@@ -533,7 +662,7 @@
                         </div>
 
                         <!-- Project 4 -->
-                        <div class="bg-slate-900/40 border border-slate-800/80 hover:border-indigo-500/30 hover:bg-slate-900/60 rounded-xl p-5 flex flex-col justify-between space-y-4 transition duration-300 group shadow-inner h-full">
+                        <div class="project-card bg-slate-900/40 border border-slate-800/80 hover:border-indigo-500/30 hover:bg-slate-900/60 rounded-xl p-5 flex flex-col justify-between space-y-4 transition duration-300 group shadow-inner h-full">
                             <div class="space-y-3">
                                 <div class="flex items-center gap-3">
                                     <span class="text-[10px] font-bold text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded border border-indigo-500/20 font-mono flex-shrink-0">04</span>
@@ -555,11 +684,11 @@
                             </div>
                             <div class="space-y-3">
                                 <div class="flex flex-wrap gap-1.5 pt-1">
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Java</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">MySQL</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">HTML5</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">CSS3</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">JavaScript</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Java</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">MySQL</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">HTML5</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">CSS3</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">JavaScript</span>
                                 </div>
                                 <div class="flex gap-2 pt-1">
                                     <span class="flex-1 text-center py-2 px-3 bg-slate-800/20 border border-slate-800/40 text-slate-600 text-xs font-semibold rounded-lg cursor-not-allowed">Not Available</span>
@@ -569,7 +698,7 @@
                         </div>
 
                         <!-- Project 5 -->
-                        <div class="bg-slate-900/40 border border-slate-800/80 hover:border-indigo-500/30 hover:bg-slate-900/60 rounded-xl p-5 flex flex-col justify-between space-y-4 transition duration-300 group shadow-inner h-full">
+                        <div class="project-card bg-slate-900/40 border border-slate-800/80 hover:border-indigo-500/30 hover:bg-slate-900/60 rounded-xl p-5 flex flex-col justify-between space-y-4 transition duration-300 group shadow-inner h-full">
                             <div class="space-y-3">
                                 <div class="flex items-center gap-3">
                                     <span class="text-[10px] font-bold text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded border border-indigo-500/20 font-mono flex-shrink-0">05</span>
@@ -589,10 +718,10 @@
                             </div>
                             <div class="space-y-3">
                                 <div class="flex flex-wrap gap-1.5 pt-1">
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Java</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Firebase</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Maps API</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">IoT</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Java</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Firebase</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Maps API</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">IoT</span>
                                 </div>
                                 <div class="flex gap-2 pt-1">
                                     <a href="https://child-safety-tracking-system-m1v9.vercel.app" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 px-3 bg-indigo-600/20 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-600/30 text-xs font-semibold rounded-lg transition duration-200">Live Demo</a>
@@ -602,7 +731,7 @@
                         </div>
 
                         <!-- Project 6 -->
-                        <div class="bg-slate-900/40 border border-slate-800/80 hover:border-indigo-500/30 hover:bg-slate-900/60 rounded-xl p-5 flex flex-col justify-between space-y-4 transition duration-300 group shadow-inner h-full">
+                        <div class="project-card bg-slate-900/40 border border-slate-800/80 hover:border-indigo-500/30 hover:bg-slate-900/60 rounded-xl p-5 flex flex-col justify-between space-y-4 transition duration-300 group shadow-inner h-full">
                             <div class="space-y-3">
                                 <div class="flex items-center gap-3">
                                     <span class="text-[10px] font-bold text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded border border-indigo-500/20 font-mono flex-shrink-0">06</span>
@@ -625,10 +754,10 @@
                             </div>
                             <div class="space-y-3">
                                 <div class="flex flex-wrap gap-1.5 pt-1">
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">React.js</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Node.js</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">MongoDB</span>
-                                    <span class="px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Tailwind CSS</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">React.js</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Node.js</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">MongoDB</span>
+                                    <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">Tailwind CSS</span>
                                 </div>
                                 <div class="flex gap-2 pt-1">
                                     <a href="https://request-management-module.vercel.app/" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 px-3 bg-indigo-600/20 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-600/30 text-xs font-semibold rounded-lg transition duration-200">Live Demo</a>
@@ -646,9 +775,195 @@
 
         <!-- Footer -->
         <div class="mt-8 pt-5 border-t border-slate-800/50 text-center">
-            <p class="text-xs text-slate-500">&copy; 2025 <span class="text-indigo-400">CyberDude NetWorks Pvt. Ltd.</span> All Rights Reserved.</p>
+            <p class="text-xs text-slate-500">&copy; 2025 <span class="text-indigo-400">CyberDude Networks Pvt. Ltd.</span> All Rights Reserved.</p>
         </div>
 
+    </div>
+
+    <!-- Hidden White PDF Report Container -->
+    <div id="pdfReport">
+        <div style="padding:40px 36px;">
+            <!-- Header -->
+            <div style="border-bottom:3px solid #1e293b; padding-bottom:16px; margin-bottom:20px;">
+                <h1 style="font-size:22px; font-weight:800; color:#1e293b; margin:0;">CyberDude Networks Pvt. Ltd.</h1>
+                <p style="font-size:13px; color:#6366f1; font-weight:600; margin:4px 0 0 0; letter-spacing:1px;">Internship Profile Report</p>
+            </div>
+
+            <!-- Intern Details -->
+            <div style="margin-bottom:20px;">
+                <h2 style="font-size:16px; font-weight:700; color:#1e293b; margin:0 0 10px 0;">Intern Details</h2>
+                <table style="font-size:13px; color:#334155; border-collapse:collapse; width:100%;">
+                    <tr><td style="padding:4px 16px 4px 0; font-weight:600; color:#64748b; width:120px;">Name</td><td style="padding:4px 0;">S. Krithikh Balan</td></tr>
+                    <tr><td style="padding:4px 16px 4px 0; font-weight:600; color:#64748b;">Role</td><td style="padding:4px 0;">Full Stack Developer Intern</td></tr>
+                    <tr><td style="padding:4px 16px 4px 0; font-weight:600; color:#64748b;">Duration</td><td style="padding:4px 0;">6 Months</td></tr>
+                    <tr><td style="padding:4px 16px 4px 0; font-weight:600; color:#64748b;">Attendance</td><td style="padding:4px 0;">96%</td></tr>
+                </table>
+            </div>
+
+            <hr style="border:none; border-top:1px solid #e2e8f0; margin:16px 0;">
+
+            <!-- Timeline -->
+            <div style="margin-bottom:20px;">
+                <h2 style="font-size:16px; font-weight:700; color:#1e293b; margin:0 0 10px 0;">Internship Timeline</h2>
+                <table style="font-size:13px; color:#334155; border-collapse:collapse; width:100%;">
+                    <tr><td style="padding:4px 16px 4px 0; font-weight:600; color:#64748b; width:120px;">Started</td><td style="padding:4px 0;">15 Jan 2025</td></tr>
+                    <tr><td style="padding:4px 16px 4px 0; font-weight:600; color:#64748b;">Completed</td><td style="padding:4px 0;">15 Jul 2025</td></tr>
+                    <tr><td style="padding:4px 16px 4px 0; font-weight:600; color:#64748b;">Status</td><td style="padding:4px 0; color:#16a34a; font-weight:600;">Successfully Completed</td></tr>
+                </table>
+            </div>
+
+            <hr style="border:none; border-top:1px solid #e2e8f0; margin:16px 0;">
+
+            <!-- Month Wise Breakdown -->
+            <div style="margin-bottom:20px;">
+                <h2 style="font-size:16px; font-weight:700; color:#1e293b; margin:0 0 10px 0;">Month Wise Breakdown</h2>
+                <table style="font-size:12px; color:#334155; border-collapse:collapse; width:100%;">
+                    <tr style="background:#f8fafc;"><td style="padding:6px 10px; font-weight:700; color:#4f46e5;">Month 1</td><td style="padding:6px 10px;">15 Jan – 14 Feb 2025</td><td style="padding:6px 10px; color:#64748b;">Orientation, project understanding, UI planning, and setup.</td></tr>
+                    <tr><td style="padding:6px 10px; font-weight:700; color:#4f46e5;">Month 2</td><td style="padding:6px 10px;">15 Feb – 14 Mar 2025</td><td style="padding:6px 10px; color:#64748b;">Frontend design, Tailwind CSS layout, responsive screens.</td></tr>
+                    <tr style="background:#f8fafc;"><td style="padding:6px 10px; font-weight:700; color:#4f46e5;">Month 3</td><td style="padding:6px 10px;">15 Mar – 14 Apr 2025</td><td style="padding:6px 10px; color:#64748b;">Backend/API understanding, integration flow, and testing.</td></tr>
+                    <tr><td style="padding:6px 10px; font-weight:700; color:#4f46e5;">Month 4</td><td style="padding:6px 10px;">15 Apr – 14 May 2025</td><td style="padding:6px 10px; color:#64748b;">Project module development, debugging, and improvements.</td></tr>
+                    <tr style="background:#f8fafc;"><td style="padding:6px 10px; font-weight:700; color:#4f46e5;">Month 5</td><td style="padding:6px 10px;">15 May – 14 Jun 2025</td><td style="padding:6px 10px; color:#64748b;">Featured project work, deployment checks, and documentation.</td></tr>
+                    <tr><td style="padding:6px 10px; font-weight:700; color:#4f46e5;">Month 6</td><td style="padding:6px 10px;">15 Jun – 15 Jul 2025</td><td style="padding:6px 10px; color:#64748b;">Final verification, PDF export, UI polish, and completion.</td></tr>
+                </table>
+            </div>
+
+            <hr style="border:none; border-top:1px solid #e2e8f0; margin:16px 0;">
+
+            <!-- Week Wise Tasks Summary -->
+            <div style="margin-bottom:20px;">
+                <h2 style="font-size:16px; font-weight:700; color:#1e293b; margin:0 0 10px 0;">Week Wise Tasks Summary</h2>
+                <div style="display:flex; flex-wrap:wrap; gap:0; font-size:11px; color:#475569;">
+                    <div style="width:50%;">
+                        <p style="margin:3px 0;">Week 1 — Orientation and setup</p>
+                        <p style="margin:3px 0;">Week 2 — HTML + CSS basics</p>
+                        <p style="margin:3px 0;">Week 3 — Responsive layout practice</p>
+                        <p style="margin:3px 0;">Week 4 — JavaScript fundamentals</p>
+                        <p style="margin:3px 0;">Week 5 — React component practice</p>
+                        <p style="margin:3px 0;">Week 6 — Tailwind integration</p>
+                        <p style="margin:3px 0;">Week 7 — GitHub and deployment tasks</p>
+                        <p style="margin:3px 0;">Week 8 — UI refinement and testing</p>
+                        <p style="margin:3px 0;">Week 9 — API structure understanding</p>
+                        <p style="margin:3px 0;">Week 10 — Backend setup with Node.js</p>
+                        <p style="margin:3px 0;">Week 11 — Authentication module practice</p>
+                        <p style="margin:3px 0;">Week 12 — Core module integration</p>
+                        <p style="margin:3px 0;">Week 13 — Data fetching and state handling</p>
+                    </div>
+                    <div style="width:50%;">
+                        <p style="margin:3px 0;">Week 14 — Form handling and validation</p>
+                        <p style="margin:3px 0;">Week 15 — Dashboard UI development</p>
+                        <p style="margin:3px 0;">Week 16 — User role and permission flow</p>
+                        <p style="margin:3px 0;">Week 17 — Project module development</p>
+                        <p style="margin:3px 0;">Week 18 — Testing and bug fixing</p>
+                        <p style="margin:3px 0;">Week 19 — UI/UX improvements</p>
+                        <p style="margin:3px 0;">Week 20 — Performance optimization</p>
+                        <p style="margin:3px 0;">Week 21 — Deployment configuration</p>
+                        <p style="margin:3px 0;">Week 22 — Live deployment testing</p>
+                        <p style="margin:3px 0;">Week 23 — Documentation</p>
+                        <p style="margin:3px 0;">Week 24 — Final review and improvements</p>
+                        <p style="margin:3px 0;">Week 25 — PDF export and report finalization</p>
+                        <p style="margin:3px 0;">Week 26 — Project completion</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border:none; border-top:1px solid #e2e8f0; margin:16px 0;">
+
+            <!-- Tech Stack -->
+            <div style="margin-bottom:12px;">
+                <h2 style="font-size:16px; font-weight:700; color:#1e293b; margin:0 0 8px 0;">Tech Stack</h2>
+                <p style="font-size:13px; color:#475569; margin:0;">React &nbsp;•&nbsp; Node.js &nbsp;•&nbsp; MongoDB &nbsp;•&nbsp; Tailwind CSS &nbsp;•&nbsp; Next.js</p>
+            </div>
+
+            <!-- Type Speed -->
+            <div style="margin-bottom:12px;">
+                <h2 style="font-size:14px; font-weight:700; color:#1e293b; margin:0 0 4px 0;">Type Speed</h2>
+                <p style="font-size:13px; color:#64748b; margin:0;">Best WPM: Not Available</p>
+            </div>
+
+            <hr style="border:none; border-top:1px solid #e2e8f0; margin:16px 0;">
+
+            <!-- Featured Projects -->
+            <div style="margin-bottom:20px;">
+                <h2 style="font-size:16px; font-weight:700; color:#1e293b; margin:0 0 10px 0;">Featured Projects</h2>
+                <div style="font-size:12px; color:#334155;">
+                    <div style="margin-bottom:10px; padding:10px 12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px;">
+                        <p style="margin:0 0 3px 0; font-weight:700;">1. AI Code Review Assistant for Students</p>
+                        <p style="margin:0 0 2px 0; color:#64748b; font-size:11px;">Tech: React.js, JavaScript, HTML5, CSS3, AI API Integration</p>
+                        <p style="margin:0; font-size:11px; color:#4f46e5;">Demo: ai-code-review-assistant-for-studen.vercel.app &nbsp;|&nbsp; Source: github.com/krithikhbalan2005-alt/AI_Code_Review_Assistant_for_Students</p>
+                    </div>
+                    <div style="margin-bottom:10px; padding:10px 12px; border:1px solid #e2e8f0; border-radius:6px;">
+                        <p style="margin:0 0 3px 0; font-weight:700;">2. K-Kart – Modern E-Commerce Website</p>
+                        <p style="margin:0 0 2px 0; color:#64748b; font-size:11px;">Tech: React.js, Vite, Tailwind CSS, React Router DOM, Context API</p>
+                        <p style="margin:0; font-size:11px; color:#4f46e5;">Demo: k-kart-krithikh.vercel.app &nbsp;|&nbsp; Source: github.com/krithikhbalan2005-alt/k-kart</p>
+                    </div>
+                    <div style="margin-bottom:10px; padding:10px 12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px;">
+                        <p style="margin:0 0 3px 0; font-weight:700;">3. AI-Based Complaint Management with Voice-To-Text Automation</p>
+                        <p style="margin:0 0 2px 0; color:#64748b; font-size:11px;">Tech: Python, React.js, MySQL, AI/ML</p>
+                        <p style="margin:0; font-size:11px; color:#4f46e5;">Demo: complaintsite.free.nf &nbsp;|&nbsp; Source: Not Available</p>
+                    </div>
+                    <div style="margin-bottom:10px; padding:10px 12px; border:1px solid #e2e8f0; border-radius:6px;">
+                        <p style="margin:0 0 3px 0; font-weight:700;">4. Vehicle Rental Management System</p>
+                        <p style="margin:0 0 2px 0; color:#64748b; font-size:11px;">Tech: Java, MySQL, HTML5, CSS3, JavaScript</p>
+                        <p style="margin:0; font-size:11px; color:#64748b;">Demo: Not Available &nbsp;|&nbsp; Source: Not Available</p>
+                    </div>
+                    <div style="margin-bottom:10px; padding:10px 12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px;">
+                        <p style="margin:0 0 3px 0; font-weight:700;">5. Child Safety System</p>
+                        <p style="margin:0 0 2px 0; color:#64748b; font-size:11px;">Tech: Java, Firebase, Maps API, IoT</p>
+                        <p style="margin:0; font-size:11px; color:#4f46e5;">Demo: child-safety-tracking-system-m1v9.vercel.app &nbsp;|&nbsp; Source: github.com/jesica5/-Child-Safety-Tracking-System</p>
+                    </div>
+                    <div style="margin-bottom:10px; padding:10px 12px; border:1px solid #e2e8f0; border-radius:6px;">
+                        <p style="margin:0 0 3px 0; font-weight:700;">6. Request Management Module</p>
+                        <p style="margin:0 0 2px 0; color:#64748b; font-size:11px;">Tech: React.js, Node.js, MongoDB, Tailwind CSS</p>
+                        <p style="margin:0; font-size:11px; color:#4f46e5;">Demo: request-management-module.vercel.app &nbsp;|&nbsp; Source: github.com/krithikhbalan2005-alt/request-management-module</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border:none; border-top:1px solid #e2e8f0; margin:16px 0;">
+
+            <!-- Conducted Performance -->
+            <div style="margin-bottom:14px;">
+                <h2 style="font-size:16px; font-weight:700; color:#1e293b; margin:0 0 8px 0;">Conducted Performance</h2>
+                <p style="font-size:13px; color:#475569; margin:0;">Standing: <span style="color:#16a34a; font-weight:600;">Good Standing</span> &nbsp;&nbsp;|&nbsp;&nbsp; Warnings: 0 &nbsp;&nbsp;|&nbsp;&nbsp; Attendance: 96%</p>
+            </div>
+
+            <!-- Key Strengths -->
+            <div style="margin-bottom:14px;">
+                <h2 style="font-size:15px; font-weight:700; color:#1e293b; margin:0 0 6px 0;">Key Strengths</h2>
+                <ul style="font-size:13px; color:#475569; margin:0; padding-left:20px; line-height:1.8;">
+                    <li>Strong Technical Skills</li>
+                    <li>Quick Learner</li>
+                    <li>Problem Solver</li>
+                    <li>Team Player</li>
+                    <li>Ownership &amp; Responsibility</li>
+                    <li>Professional Communication</li>
+                </ul>
+            </div>
+
+            <!-- Leadership Quality -->
+            <div style="margin-bottom:14px;">
+                <h2 style="font-size:15px; font-weight:700; color:#1e293b; margin:0 0 6px 0;">Leadership Quality</h2>
+                <ul style="font-size:13px; color:#475569; margin:0; padding-left:20px; line-height:1.8;">
+                    <li>Took initiative in complex tasks</li>
+                    <li>Helped in task planning &amp; estimation</li>
+                    <li>Mentored teammates effectively</li>
+                    <li>Maintained high code quality</li>
+                    <li>Showed excellent communication</li>
+                    <li>Demonstrated ownership &amp; teamwork</li>
+                </ul>
+            </div>
+
+            <!-- Remarks -->
+            <div style="margin-bottom:20px;">
+                <h2 style="font-size:15px; font-weight:700; color:#1e293b; margin:0 0 6px 0;">Remarks</h2>
+                <p style="font-size:13px; color:#475569; margin:0; line-height:1.7;">Krithikh Balan has shown excellent dedication, consistency, and a strong learning attitude. He actively contributed to multiple projects, supported team members, and maintained excellent communication. His problem-solving ability, ownership, and reliability are highly appreciated.</p>
+            </div>
+
+            <!-- Footer -->
+            <div style="border-top:2px solid #1e293b; padding-top:12px; margin-top:24px; text-align:center;">
+                <p style="font-size:11px; color:#94a3b8; margin:0;">&copy; 2025 CyberDude Networks Pvt. Ltd. All Rights Reserved.</p>
+            </div>
+        </div>
     </div>
 
     <!-- html2pdf.js CDN -->
@@ -671,56 +986,67 @@
             }
         });
 
-        // PDF export — opens in new tab
-        document.getElementById('downloadPdfBtn').addEventListener('click', function () {
-            var element = document.getElementById('dashboardContent');
-            var button = this;
-            var pdfFilename = 'CyberDude_Internship_Profile_S_Krithikh_Balan.pdf';
+        // Week Wise Tasks toggle
+        document.getElementById('weekwiseToggle').addEventListener('click', function () {
+            var content = document.getElementById('weekwiseContent');
+            var chevron = document.getElementById('weekwiseChevron');
 
-            var pdfWindow = window.open('', '_blank');
-            if (pdfWindow) {
-                pdfWindow.document.write('<html><head><title>' + pdfFilename + '</title></head><body style="margin:0;display:flex;justify-content:center;align-items:center;height:100vh;background:#0b0f19;color:#e2e8f0;font-family:sans-serif;"><p style="font-size:18px;">Generating PDF, please wait...</p></body></html>');
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                chevron.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('open');
+                chevron.style.transform = 'rotate(180deg)';
             }
+        });
 
-            button.style.display = 'none';
-            element.classList.add('pdf-mode');
+        // Tech tag click handler — subtle highlight only
+        document.querySelectorAll('.tech-tag').forEach(function(tag) {
+            tag.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+            });
+        });
 
-            var opt = {
-                margin:       0.15,
-                filename:     pdfFilename,
+        // PDF export — white formal report using html2pdf.js
+        document.getElementById('downloadPdfBtn').addEventListener('click', function () {
+            var btn = this;
+            btn.disabled = true;
+            btn.textContent = 'Generating...';
+
+            var el = document.getElementById('pdfReport');
+
+            // Temporarily make it visible for html2canvas capture
+            el.style.position = 'static';
+            el.style.left = '0';
+
+            var options = {
+                margin:       0.3,
+                filename:     'CyberDude_Internship_Profile_S_Krithikh_Balan.pdf',
                 image:        { type: 'jpeg', quality: 1 },
                 html2canvas:  {
                     scale: 2,
                     useCORS: true,
-                    backgroundColor: '#0b0f19',
-                    logging: false
+                    backgroundColor: '#ffffff'
                 },
                 jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
             };
 
-            setTimeout(function () {
-                html2pdf()
-                    .set(opt)
-                    .from(element)
-                    .toPdf()
-                    .output('blob')
-                    .then(function (blob) {
-                        var url = URL.createObjectURL(blob);
-                        if (pdfWindow && !pdfWindow.closed) {
-                            pdfWindow.location.href = url;
-                        } else {
-                            window.open(url, '_blank');
-                        }
-                        element.classList.remove('pdf-mode');
-                        button.style.display = '';
-                    })
-                    .catch(function (error) {
-                        console.error('PDF generation failed:', error);
-                        if (pdfWindow && !pdfWindow.closed) pdfWindow.close();
-                        element.classList.remove('pdf-mode');
-                        button.style.display = '';
-                    });
-            }, 300);
+            html2pdf().set(options).from(el).save().then(function() {
+                // Restore hidden state
+                el.style.position = 'absolute';
+                el.style.left = '-9999px';
+
+                btn.disabled = false;
+                btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg> Download PDF';
+            }).catch(function(err) {
+                console.error('PDF generation error:', err);
+                el.style.position = 'absolute';
+                el.style.left = '-9999px';
+
+                btn.disabled = false;
+                btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg> Download PDF';
+            });
         });
     </script>
 </body>
