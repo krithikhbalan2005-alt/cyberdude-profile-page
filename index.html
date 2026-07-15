@@ -46,19 +46,14 @@
             transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Tech tag click */
+        /* Tech tag style */
         .tech-tag {
-            cursor: pointer;
             transition: border-color 0.2s, color 0.2s, background-color 0.2s;
         }
         .tech-tag:hover {
             border-color: #6366f1;
             color: #c7d2fe;
-        }
-        .tech-tag.active {
-            border-color: #6366f1;
-            color: #c7d2fe;
-            background-color: rgba(99,102,241,0.15);
+            background-color: rgba(99, 102, 241, 0.08);
         }
 
         /* Hidden PDF report */
@@ -934,6 +929,7 @@
                                     <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">CSS3</span>
                                     <span class="tech-tag px-2 py-0.5 bg-slate-800/60 text-slate-400 text-[9px] font-semibold rounded border border-slate-700/40">JavaScript</span>
                                 </div>
+                                <div class="h-[38px] pt-1" aria-hidden="true"></div>
                             </div>
                         </div>
 
@@ -973,7 +969,7 @@
                                         Live Demo
                                     </a>
                                     <a href="https://github.com/jesica5/-Child-Safety-Tracking-System.git" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 bg-slate-800/40 border border-slate-700/50 text-slate-400 hover:text-slate-300 hover:border-slate-600 text-xs font-semibold rounded-lg transition duration-200">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg>
                                         Source Code
                                     </a>
                                 </div>
@@ -1037,7 +1033,7 @@
                         </svg>
                     </div>
                     <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-medium">
-                        Worked as a full-stack developer intern at <span class="text-indigo-400 font-semibold">CyberDude Networks Pvt. Ltd.</span> during <span class="text-slate-100 font-semibold">2025</span>, successfully building and deploying six responsive web applications.
+                        Successfully completed a 6-month (180-day) Full-Stack Development Internship at <span class="text-indigo-400 font-semibold">CyberDude Networks Pvt. Ltd.</span> (<span class="text-slate-100 font-semibold">2025</span>), contributing <span class="text-slate-100 font-semibold">1,440+ hours</span> of hands-on experience while building and deploying six responsive web applications — gaining real-world expertise in development, deployment, and scalable application architecture.
                     </p>
                 </div>
 
@@ -1267,13 +1263,7 @@
             }
         });
 
-        // Tech tag click handler — subtle highlight only
-        document.querySelectorAll('.tech-tag').forEach(function(tag) {
-            tag.addEventListener('click', function(e) {
-                e.stopPropagation();
-                this.classList.toggle('active');
-            });
-        });
+
     </script>
 </body>
 </html>
